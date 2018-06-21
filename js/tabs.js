@@ -144,7 +144,7 @@
 
       // Update the variables with the new link and content
       this.$activeTabLink = tabLink;
-      this.$content = $(M.escapeHash(tabLink[0].hash));
+      this.$content = $(M.escapeHash(decodeURI(tabLink[0].hash)));
       this.$tabLinks = this.$el.children('li.tab').children('a');
 
       // Make the tab active.
@@ -226,7 +226,7 @@
       this.index = Math.max(this.$tabLinks.index(this.$activeTabLink), 0);
 
       if (this.$activeTabLink.length) {
-        this.$content = $(M.escapeHash(this.$activeTabLink[0].hash));
+        this.$content = $(M.escapeHash(decodeURI(this.$activeTabLink[0].hash)));
         this.$content.addClass('active');
       }
     }
@@ -242,7 +242,7 @@
 
       let $tabsContent = $();
       this.$tabLinks.each((link) => {
-        let $currContent = $(M.escapeHash(link.hash));
+        let $currContent = $(M.escapeHash(decodeURI(link.hash)));
         $currContent.addClass('carousel-item');
         $tabsContent = $tabsContent.add($currContent);
       });
@@ -294,7 +294,7 @@
       // Hide Tabs Content
       this.$tabLinks.not(this.$activeTabLink).each((link) => {
         if (!!link.hash) {
-          let $currContent = $(M.escapeHash(link.hash));
+          let $currContent = $(M.escapeHash(decodeURI(link.hash)));
           if ($currContent.length) {
             $currContent[0].style.display = 'none';
           }
@@ -309,7 +309,7 @@
       // show Tabs Content
       this.$tabLinks.each((link) => {
         if (!!link.hash) {
-          let $currContent = $(M.escapeHash(link.hash));
+          let $currContent = $(M.escapeHash(decodeURI(link.hash)));
           if ($currContent.length) {
             $currContent[0].style.display = '';
           }
